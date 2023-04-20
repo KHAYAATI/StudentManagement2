@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.LifecycleState;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 
 @Entity(name = "filier")
 @Data
@@ -20,6 +20,12 @@ public class Filiere {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id ;
     private String name ;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Student> students ;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ModuleF> modules;
 
 
 }

@@ -7,8 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity(name = "carrier")
+@Entity(name = "carriere")
 @Data
 @Builder
 @AllArgsConstructor
@@ -19,6 +20,12 @@ public class Carriere {
     private int id ;
     @Enumerated(EnumType.STRING)
     private Diplomat diplomat;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Student> students;
+
+
+
 
 
 }
