@@ -35,11 +35,13 @@ public class Student {
     @Enumerated(EnumType.STRING)
     private Diplomat diplomat ;
 
-    @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
-    private Filiere filiere;
+   // @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
+   // private Filiere filiere;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Carriere carriere;
+
+
 
 
 

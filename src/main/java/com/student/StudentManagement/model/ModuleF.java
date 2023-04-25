@@ -16,7 +16,7 @@ import java.util.List;
 public class ModuleF {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id ;
+    private long id ;
     private String name ;
 
 
