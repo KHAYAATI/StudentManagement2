@@ -21,8 +21,8 @@ public class Filiere {
     private long  id ;
     private String name ;
 
-    //@OneToMany(cascade = CascadeType.ALL)
-    //private List<Student> students ;
+   // @OneToMany(cascade = CascadeType.ALL)
+   // private List<Student> students ;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ModuleF> modules;
