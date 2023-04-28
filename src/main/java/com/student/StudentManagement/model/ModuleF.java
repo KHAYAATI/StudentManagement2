@@ -21,5 +21,6 @@ public class ModuleF {
     @ManyToOne
     @JoinColumn(name = "filiere_id")
     private Filiere filiere;
+    //ok confirmed
 
 }
