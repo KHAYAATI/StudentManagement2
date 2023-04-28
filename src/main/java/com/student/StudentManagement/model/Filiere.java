@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.apache.catalina.LifecycleState;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,13 +18,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Filiere {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long  id ;
     private String name ;
    //@OneToMany(mappedBy = "filiere",cascade = CascadeType.ALL)
   // private List<Student> students ;
-   @OneToMany
-   private List<ModuleF> modules;
+   @OneToMany(mappedBy = "filiere")
+   private List<ModuleF> modules = new ArrayList<>();;
 
 
 }
