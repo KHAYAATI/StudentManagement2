@@ -22,5 +22,6 @@ public class ModuleF {
     @JoinColumn(name = "filiere_id")
     private Filiere filiere;
     //ok confirmed
+    //Received
 
 }
