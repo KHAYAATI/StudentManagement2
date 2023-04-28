@@ -1,11 +1,12 @@
 package com.student.StudentManagement.services;
 
+import com.student.StudentManagement.dto.RequestModuleFDto;
 import com.student.StudentManagement.model.ModuleF;
 
 import java.util.List;
 
 public interface ModuleFService {
-    void createModuleF(ModuleF moduleF);
+    RequestModuleFDto createModuleF(RequestModuleFDto requestModuleFDto);
 
     List<ModuleF> getAllModuleFs();
 

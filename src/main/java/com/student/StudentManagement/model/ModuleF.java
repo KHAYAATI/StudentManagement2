@@ -15,10 +15,11 @@ import java.util.List;
 @NoArgsConstructor
 public class ModuleF {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id ;
     private String name ;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Filiere> filieres;
+    @OneToOne
+    @JoinColumn(name = "filiere_id")
+    private Filiere filiere;
 
 }

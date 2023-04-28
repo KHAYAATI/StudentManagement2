@@ -10,22 +10,20 @@ import javax.persistence.*;
 import java.util.List;
 
 
-@Entity(name = "filier")
+@Entity(name = "filiere")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Filiere {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long  id ;
     private String name ;
-
-   // @OneToMany(cascade = CascadeType.ALL)
-   // private List<Student> students ;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ModuleF> modules;
+   //@OneToMany(mappedBy = "filiere",cascade = CascadeType.ALL)
+  // private List<Student> students ;
+   @OneToMany
+   private List<ModuleF> modules;
 
 
 }

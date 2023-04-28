@@ -13,6 +13,6 @@ import java.util.List;
 public class RespenseModuleFDto {
     private long id ;
     private String name ;
-    private List<Filiere> filieres;
+   // private List<Filiere> filieres;
 
 }

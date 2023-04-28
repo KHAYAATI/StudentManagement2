@@ -17,9 +17,10 @@ import java.util.List;
 @NoArgsConstructor
 public class Carriere {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-   // @ManyToOne
-    //private Student student;
+   @OneToMany
+    private List<Student> student;
     @Enumerated(EnumType.STRING)
     private Diplomat diplomat;
 

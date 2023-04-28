@@ -19,7 +19,7 @@ import java.util.List;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id ;
     @Column(unique=true)
 
@@ -39,25 +39,8 @@ public class Student {
     private Gender genre ;
     @Enumerated(EnumType.STRING)
     private Diplomat diplomat ;
-/*
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Filiere filiere;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Carriere> carriere;
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//    @ManyToMany
+//    private List<Carriere> carrieres;
 }
