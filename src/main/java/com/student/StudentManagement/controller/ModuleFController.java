@@ -1,16 +1,12 @@
 package com.student.StudentManagement.controller;
 
-import com.student.StudentManagement.dto.RequestModuleFDto;
-import com.student.StudentManagement.dto.RespenseModuleFDto;
-import com.student.StudentManagement.model.ModuleF;
 import com.student.StudentManagement.model.ModulePojo;
 import com.student.StudentManagement.services.ModuleFService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/moduleFs")
@@ -32,8 +28,7 @@ public class ModuleFController {
 
 
     @PostMapping
-    public void saveModule(HttpServletRequest request,
-                           Model model, @RequestBody ModulePojo dataPojo) {
+    public void saveModule(@RequestBody ModulePojo dataPojo) {
         moduleFService.saveModule(dataPojo);
     }
 
