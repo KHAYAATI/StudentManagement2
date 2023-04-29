@@ -1,12 +1,12 @@
 package com.student.StudentManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity(name = "module")
 @Data
@@ -16,12 +16,11 @@ import java.util.List;
 public class ModuleF {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id ;
-    private String name ;
-    @ManyToOne
-    @JoinColumn(name = "filiere_id")
+    private Long id;
+    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "filiere_id", nullable = true)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Filiere filiere;
-    //ok confirmed
-    //Received
 
 }

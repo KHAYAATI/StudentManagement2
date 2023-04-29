@@ -1,10 +1,10 @@
 package com.student.StudentManagement.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.LifecycleState;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,12 +19,12 @@ import java.util.List;
 public class Filiere {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long  id ;
-    private String name ;
-   //@OneToMany(mappedBy = "filiere",cascade = CascadeType.ALL)
-  // private List<Student> students ;
-   @OneToMany(mappedBy = "filiere")
-   private List<ModuleF> modules = new ArrayList<>();;
+    private Long id;
+    private String name;
+    @OneToMany(mappedBy = "filiere", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<ModuleF> modules;
+    ;
 
 
 }
