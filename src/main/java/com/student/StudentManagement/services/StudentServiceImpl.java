@@ -1,7 +1,11 @@
 package com.student.StudentManagement.services;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
+import com.student.StudentManagement.model.Filiere;
+import com.student.StudentManagement.model.ModuleF;
 import com.student.StudentManagement.model.Student;
+import com.student.StudentManagement.model.StudentPojo;
+import com.student.StudentManagement.repository.FilierRepository;
 import com.student.StudentManagement.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -16,6 +20,25 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final FilierRepository filierRepository;
+
+    @Override
+    public void saveStudent(StudentPojo dataPojo) {
+        Filiere filiere = filierRepository.findById(dataPojo.getIdFiliere())
+                .orElseThrow(() -> new RuntimeException(" This Filiere is not exist in database"));
+
+        Student student = new Student();
+
+        BeanUtils.copyProperties(dataPojo, student);
+
+        student.setFilier(filiere);
+
+        filierRepository.save(filiere);
+
+        studentRepository.save(student);
+        System.out.println("created with success !");
+
+    }
 
     @Override
     public RequestStudentDto createStudent(RequestStudentDto student) {

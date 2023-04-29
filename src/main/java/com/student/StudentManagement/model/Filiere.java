@@ -24,7 +24,11 @@ public class Filiere {
     @OneToMany(mappedBy = "filiere", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ModuleF> modules;
-    ;
+
+    //new at now
+    @OneToMany(mappedBy = "filier", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List <Student> students ;
 
 
 }
