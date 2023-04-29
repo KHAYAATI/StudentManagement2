@@ -1,12 +1,13 @@
 package com.student.StudentManagement.controller;
 
+import com.student.StudentManagement.model.Filiere;
+import com.student.StudentManagement.model.ModuleF;
 import com.student.StudentManagement.model.ModulePojo;
 import com.student.StudentManagement.services.ModuleFService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/moduleFs")
@@ -30,6 +31,24 @@ public class ModuleFController {
     @PostMapping
     public void saveModule(@RequestBody ModulePojo dataPojo) {
         moduleFService.saveModule(dataPojo);
+    }
+
+    @GetMapping("/viewModules")
+    public List<ModuleF> viewModules() {
+        return moduleFService.getAllModuleFs();
+
+    }
+
+    @GetMapping("/viewModule/{id}")
+    public ModuleF viewModule(@PathVariable(value = "id") Long id) {
+        return moduleFService.getModuleFById(id);
+
+    }
+
+
+    @GetMapping("/deleteModule/{id}")
+    public void deleteModule(@PathVariable(value = "id") Long id) {
+        moduleFService.deleteModuleF(id);
     }
 
 

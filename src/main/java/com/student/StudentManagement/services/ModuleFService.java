@@ -13,9 +13,9 @@ public interface ModuleFService {
 
     List<ModuleF> getAllModuleFs();
 
-    ModuleF getModuleFById(int id );
+    ModuleF getModuleFById(Long id );
 
     void updateModuleF(ModuleF moduleF);
 
-    void deleteModuleF(int id);
+    void deleteModuleF(Long id);
 }

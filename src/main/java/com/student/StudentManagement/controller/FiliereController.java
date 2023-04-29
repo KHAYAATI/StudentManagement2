@@ -43,7 +43,7 @@ public class FiliereController {
 
 
     @GetMapping("/deleteFiliere/{id}")
-    public void deleteEmployee(@PathVariable(value = "id") Long id) {
+    public void deleteFiliere(@PathVariable(value = "id") Long id) {
         filiereService.deleteFiliere(id);
     }
 

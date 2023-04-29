@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -50,12 +51,20 @@ public class ModuleFServiceImpl implements ModuleFService {
 
     @Override
     public List<ModuleF> getAllModuleFs() {
-        return null;
+        return moduleFRepository.findAll();
     }
 
     @Override
-    public ModuleF getModuleFById(int id) {
-        return null;
+    public ModuleF getModuleFById(Long id) {
+        Optional<ModuleF> opt = moduleFRepository.findById(id);
+        ModuleF moduleF ;
+        if (opt.isPresent()) {
+            moduleF = opt.get();
+        } else {
+            throw new RuntimeException("Module not found for id -> " + id);
+        }
+
+        return moduleF;
     }
 
     @Override
@@ -64,7 +73,7 @@ public class ModuleFServiceImpl implements ModuleFService {
     }
 
     @Override
-    public void deleteModuleF(int id) {
-
+    public void deleteModuleF(Long id) {
+        moduleFRepository.deleteById(id);
     }
 }
