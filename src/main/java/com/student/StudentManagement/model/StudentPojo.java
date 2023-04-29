@@ -23,6 +23,7 @@ public class StudentPojo {
     private Date dateNaissance ;
     private String lieuNaissance ;
     private String adresse ;
+    //@Enumerated(EnumType.STRING)
     private Gender genre ;
     @Enumerated(EnumType.STRING)
     private Diplomat diplomat ;
