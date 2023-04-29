@@ -25,7 +25,7 @@ public class Student {
 
     private String cin ;
     @Column(unique=true)
-    private long apogee;
+    private Long apogee;
     private String nom ;
     private String prenom ;
     @Column(unique=true)

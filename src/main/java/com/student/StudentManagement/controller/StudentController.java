@@ -2,11 +2,15 @@ package com.student.StudentManagement.controller;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseStudentDto;
+import com.student.StudentManagement.model.Filiere;
+import com.student.StudentManagement.model.ModuleF;
 import com.student.StudentManagement.model.Student;
 import com.student.StudentManagement.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
@@ -25,4 +29,24 @@ public class StudentController {
 
         return adResp;
     }
+
+    @GetMapping("/viewStudents")
+    public List<Student> viewStudents() {
+        return studentService.getAllStudents();
+
+    }
+
+
+    @GetMapping("/viewStudent/{apogee}")
+    public Student viewStudent(@PathVariable(value = "apogee") Long apogee) {
+        return studentService.getStudentByApogee(apogee);
+
+    }
+
+
+    @GetMapping("/deleteStudent/{apogee}")
+    public void deleteStudent(@PathVariable(value = "apogee") Long apogee) {
+        studentService.deleteStudent(apogee);
+    }
+
 }

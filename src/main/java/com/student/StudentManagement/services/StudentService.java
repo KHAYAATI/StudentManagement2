@@ -9,9 +9,9 @@ public interface StudentService {
     RequestStudentDto createStudent(RequestStudentDto student);
 
     List<Student> getAllStudents();
-    Student getStudentByApogee(String apogee);
+    Student getStudentByApogee(Long apogee);
 
     void updateStudent(Student student);
 
-    void deleteStudent(String cin);
+    void deleteStudent(Long apogee);
 }
