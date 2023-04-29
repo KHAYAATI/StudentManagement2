@@ -2,15 +2,13 @@ package com.student.StudentManagement.controller;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseStudentDto;
-import com.student.StudentManagement.model.Filiere;
-import com.student.StudentManagement.model.ModuleF;
-import com.student.StudentManagement.model.Student;
-import com.student.StudentManagement.model.StudentPojo;
+import com.student.StudentManagement.model.*;
 import com.student.StudentManagement.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -30,6 +28,7 @@ public class StudentController {
 //
 //        return adResp;
 //    }
+
 
     @PostMapping
     public void SaveStudent(@RequestBody StudentPojo data){
@@ -54,4 +53,8 @@ public class StudentController {
         studentService.deleteStudent(apogee);
     }
 
+    @GetMapping("/carrieres/{id}")
+    public List<Carriere> getCarrieresByStudent(@PathVariable(name="id") Long id){
+        return studentService.getCarrieresByStudentId(id);
+    }
 }

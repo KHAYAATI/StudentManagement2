@@ -28,7 +28,7 @@ public class Filiere {
     //new at now
     @OneToMany(mappedBy = "filier", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List <Student> students ;
+    private List<Student> students;
 
 
 }

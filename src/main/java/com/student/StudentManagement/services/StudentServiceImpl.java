@@ -1,16 +1,14 @@
 package com.student.StudentManagement.services;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
-import com.student.StudentManagement.model.Filiere;
-import com.student.StudentManagement.model.ModuleF;
-import com.student.StudentManagement.model.Student;
-import com.student.StudentManagement.model.StudentPojo;
+import com.student.StudentManagement.model.*;
 import com.student.StudentManagement.repository.FilierRepository;
 import com.student.StudentManagement.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,5 +76,12 @@ public class StudentServiceImpl implements StudentService {
 
         Long id = studentRepository.getStudentByApogee(apogee).getId();
         studentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Carriere> getCarrieresByStudentId(Long StudentId) {
+        Student student = studentRepository.findById(StudentId)
+                .orElseThrow(() -> new EntityNotFoundException("Student not found"));
+        return student.getCarrieres();
     }
 }
