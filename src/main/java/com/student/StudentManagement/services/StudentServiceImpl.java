@@ -51,7 +51,9 @@ public class StudentServiceImpl implements StudentService {
     public RequestStudentDto getStudentByApogee(Long apogee) {
         RequestStudentDto dto = RequestStudentDto.builder().build();
         Student std = studentRepository.getStudentByApogee(apogee);
-        BeanUtils.copyProperties(std, dto);
+        Student std1 = studentRepository.findById(std.getId()).get();
+
+        BeanUtils.copyProperties(std1, dto);
         return dto;
 
        // Optional<Student> opt = Optional.ofNullable(studentRepository.getStudentByApogee(apogee));
