@@ -24,7 +24,6 @@ public class RequestStudentDto {
     private String lieuNaissance ;
     private String adresse ;
     private Gender genre ;
-    private Diplomat diplomat;
-    private List<Filiere> filieres;
+    private Filiere filier;
 
 }

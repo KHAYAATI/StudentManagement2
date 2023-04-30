@@ -20,6 +20,7 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final FilierRepository filierRepository;
 
+
     @Override
     public void saveStudent(StudentPojo dataPojo) {
         Filiere filiere = filierRepository.findById(dataPojo.getIdFiliere())
@@ -39,31 +40,29 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public RequestStudentDto createStudent(RequestStudentDto student) {
-        RequestStudentDto dto = RequestStudentDto.builder().build();
-        Student student1 = new Student();
-        BeanUtils.copyProperties(student, student1);
-        Student storedStudent = studentRepository.save(student1);
-        BeanUtils.copyProperties(storedStudent, dto);
-        return dto;
-    }
-
-    @Override
     public List<Student> getAllStudents() {
+
+
+
         return studentRepository.findAll();
     }
 
     @Override
-    public Student getStudentByApogee(Long apogee) {
-        Optional<Student> opt = Optional.ofNullable(studentRepository.getStudentByApogee(apogee));
-        Student student;
-        if (opt.isPresent()) {
-            student = opt.get();
-        } else {
-            throw new RuntimeException("Student not found for apogee :: " + apogee);
-        }
+    public RequestStudentDto getStudentByApogee(Long apogee) {
+        RequestStudentDto dto = RequestStudentDto.builder().build();
+        Student std = studentRepository.getStudentByApogee(apogee);
+        BeanUtils.copyProperties(std, dto);
+        return dto;
 
-        return student;
+       // Optional<Student> opt = Optional.ofNullable(studentRepository.getStudentByApogee(apogee));
+//        Student student;
+//        if (opt.isPresent()) {
+//            student = opt.get();
+//        } else {
+//            throw new RuntimeException("Student not found for apogee :: " + apogee);
+//        }
+//
+//        return student;
     }
 
     @Override

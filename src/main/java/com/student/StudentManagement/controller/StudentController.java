@@ -3,7 +3,9 @@ package com.student.StudentManagement.controller;
 import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseStudentDto;
 import com.student.StudentManagement.model.*;
+import com.student.StudentManagement.services.CarriereService;
 import com.student.StudentManagement.services.StudentService;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
+    private final CarriereService carriereService;
 
 //    @PostMapping
 //    public RespenseStudentDto createStudent(@RequestBody Student student){
@@ -33,6 +36,7 @@ public class StudentController {
     @PostMapping
     public void SaveStudent(@RequestBody StudentPojo data){
         studentService.saveStudent(data);
+
     }
     @GetMapping("/viewStudents")
     public List<Student> viewStudents() {
@@ -42,7 +46,7 @@ public class StudentController {
 
 
     @GetMapping("/viewStudent/{apogee}")
-    public Student viewStudent(@PathVariable(value = "apogee") Long apogee) {
+    public RequestStudentDto viewStudent(@PathVariable(value = "apogee") Long apogee) {
         return studentService.getStudentByApogee(apogee);
 
     }

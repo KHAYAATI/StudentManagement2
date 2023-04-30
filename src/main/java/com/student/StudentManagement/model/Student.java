@@ -39,16 +39,13 @@ public class Student {
     private String adresse;
     @Enumerated(EnumType.STRING)
     private Gender genre;
-    @Enumerated(EnumType.STRING)
-    private Diplomat diplomat;
+
     // new
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "filiere_id", nullable = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Filiere filier;
-
-
     @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Carriere> carrieres;

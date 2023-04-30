@@ -12,10 +12,10 @@ public interface StudentService {
 
     public void saveStudent(StudentPojo dataPojo);
 
-    RequestStudentDto createStudent(RequestStudentDto student);
+
 
     List<Student> getAllStudents();
-    Student getStudentByApogee(Long apogee);
+    RequestStudentDto getStudentByApogee(Long apogee);
 
     void updateStudent(Student student);
 
