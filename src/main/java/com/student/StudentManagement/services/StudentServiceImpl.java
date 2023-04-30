@@ -46,19 +46,26 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<RespenseStudentDto> getAllStudents() {
-        List<Student> students = studentRepository.findAll();
+      List<Student> students =studentRepository.findAll();
+      List<RespenseStudentDto> respenseStudentDtoList=new ArrayList<>();
 
-        List<RespenseStudentDto> respenseStudentDtoList = new ArrayList<>();
-        RespenseStudentDto respenseStudentDto = RespenseStudentDto.builder().build();
-        for (Student i : students) {
+        for (Student i: students) {
+            RespenseStudentDto respense=RespenseStudentDto.builder().cin(i.getCin())
+                    .nom(i.getNom())
+                    .prenom(i.getPrenom())
+                    .cne(i.getCne())
+                    .apogee(i.getApogee())
+                    .email(i.getEmail())
+                    .genre(i.getGenre())
+                    .carriere(i.getCarrieres())
+                    .filiere(i.getFilier())
+                    .build();
+            respenseStudentDtoList.add(respense);
 
-            BeanUtils.copyProperties(i, respenseStudentDto);
-
-            respenseStudentDtoList.add(respenseStudentDto);
-            System.out.println("converted ................!");
 
         }
-        return respenseStudentDtoList;
+        System.out.println("Retuner la list des réponse ..............");
+        return respenseStudentDtoList ;
     }
 
     @Override

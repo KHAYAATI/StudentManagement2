@@ -10,18 +10,11 @@ import com.student.StudentManagement.model.StudentPojo;
 import java.util.List;
 
 public interface StudentService {
-
     public void saveStudent(StudentPojo dataPojo);
-
-
-
     List<RespenseStudentDto> getAllStudents();
     RequestStudentDto getStudentByApogee(Long apogee);
-
     void updateStudent(Student student);
-
     void deleteStudent(Long apogee);
-
     List<Carriere> getCarrieresByStudentId(Long StudentId);
 
 }
