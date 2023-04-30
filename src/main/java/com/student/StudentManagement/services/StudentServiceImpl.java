@@ -61,8 +61,6 @@ public class StudentServiceImpl implements StudentService {
                     .filiere(i.getFilier())
                     .build();
             respenseStudentDtoList.add(respense);
-
-
         }
         System.out.println("Retuner la list des réponse ..............");
         return respenseStudentDtoList ;

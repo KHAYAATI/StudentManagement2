@@ -30,13 +30,13 @@ public class FiliereController {
     }
 
     @GetMapping("/viewFilieres")
-    public List<Filiere> viewFilieres() {
+    public List<RespenseFiliereDto> viewFilieres() {
         return filiereService.getAllFilieres();
 
     }
 
     @GetMapping("/viewFiliere/{id}")
-    public Filiere viewFiliere(@PathVariable(value = "id") Long id) {
+    public RespenseFiliereDto viewFiliere(@PathVariable(value = "id") Long id) {
         return filiereService.getFiliereById(id);
 
     }
