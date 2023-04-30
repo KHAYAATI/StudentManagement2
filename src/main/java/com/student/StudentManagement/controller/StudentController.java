@@ -19,27 +19,13 @@ import java.util.List;
 public class StudentController {
     private final StudentService studentService;
     private final CarriereService carriereService;
-
-//    @PostMapping
-//    public RespenseStudentDto createStudent(@RequestBody Student student){
-//        RespenseStudentDto adResp = RespenseStudentDto.builder().build();
-//        RequestStudentDto dto = RequestStudentDto.builder().build();
-//        BeanUtils.copyProperties(student, dto);
-//        RequestStudentDto dto1 = studentService.createStudent(dto);
-//        BeanUtils.copyProperties(dto1, adResp);
-//        System.out.println("hhhhhhhhhhhhhhhhhhh");
-//
-//        return adResp;
-//    }
-
-
     @PostMapping
     public void SaveStudent(@RequestBody StudentPojo data){
         studentService.saveStudent(data);
 
     }
     @GetMapping("/viewStudents")
-    public List<Student> viewStudents() {
+    public List<RespenseStudentDto> viewStudents() {
         return studentService.getAllStudents();
 
     }

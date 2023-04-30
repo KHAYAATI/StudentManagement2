@@ -26,7 +26,6 @@ public class RespenseStudentDto {
     private String lieuNaissance ;
     private String adresse ;
     private Gender genre ;
-    private Diplomat diplomat ;
     private Filiere filiere;
     private List<Carriere> carriere;
 }

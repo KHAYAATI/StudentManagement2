@@ -1,6 +1,7 @@
 package com.student.StudentManagement.services;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
+import com.student.StudentManagement.dto.RespenseStudentDto;
 import com.student.StudentManagement.model.Carriere;
 import com.student.StudentManagement.model.ModulePojo;
 import com.student.StudentManagement.model.Student;
@@ -14,7 +15,7 @@ public interface StudentService {
 
 
 
-    List<Student> getAllStudents();
+    List<RespenseStudentDto> getAllStudents();
     RequestStudentDto getStudentByApogee(Long apogee);
 
     void updateStudent(Student student);
