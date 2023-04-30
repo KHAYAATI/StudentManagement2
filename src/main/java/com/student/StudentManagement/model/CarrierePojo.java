@@ -18,7 +18,6 @@ public class CarrierePojo {
 
 
     @Enumerated(EnumType.STRING)
-    @Column(unique = true)
     private Diplomat diplomat ;
     private Long studentId;
 }

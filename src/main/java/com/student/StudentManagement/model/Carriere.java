@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity(name = "carriere")
+@Table(uniqueConstraints= @UniqueConstraint(columnNames={"diplomat"}))
 @Data
 @Builder
 @AllArgsConstructor
