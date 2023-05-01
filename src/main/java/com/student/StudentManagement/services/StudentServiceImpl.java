@@ -2,19 +2,19 @@ package com.student.StudentManagement.services;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseStudentDto;
-import com.student.StudentManagement.model.*;
-import com.student.StudentManagement.repository.CarriereRepository;
+import com.student.StudentManagement.model.Carriere;
+import com.student.StudentManagement.model.Filiere;
+import com.student.StudentManagement.model.Student;
+import com.student.StudentManagement.model.StudentPojo;
 import com.student.StudentManagement.repository.FilierRepository;
 import com.student.StudentManagement.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.cfg.annotations.ListBinder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -46,11 +46,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<RespenseStudentDto> getAllStudents() {
-      List<Student> students =studentRepository.findAll();
-      List<RespenseStudentDto> respenseStudentDtoList=new ArrayList<>();
+        List<Student> students = studentRepository.findAll();
+        List<RespenseStudentDto> respenseStudentDtoList = new ArrayList<>();
 
-        for (Student i: students) {
-            RespenseStudentDto respense=RespenseStudentDto.builder().cin(i.getCin())
+        for (Student i : students) {
+            RespenseStudentDto respense = RespenseStudentDto.builder().cin(i.getCin())
                     .nom(i.getNom())
                     .prenom(i.getPrenom())
                     .cne(i.getCne())
@@ -63,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
             respenseStudentDtoList.add(respense);
         }
         System.out.println("Retuner la list des réponse ..............");
-        return respenseStudentDtoList ;
+        return respenseStudentDtoList;
     }
 
     @Override

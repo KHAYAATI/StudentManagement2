@@ -1,11 +1,8 @@
 package com.student.StudentManagement.services;
 
 import com.student.StudentManagement.dto.RequestFiliereDto;
-import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseFiliereDto;
-import com.student.StudentManagement.dto.RespenseStudentDto;
 import com.student.StudentManagement.model.Filiere;
-import com.student.StudentManagement.model.Student;
 import com.student.StudentManagement.repository.FilierRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -32,24 +29,28 @@ public class FiliereServiceImpl implements FiliereService {
 
     @Override
     public List<RespenseFiliereDto> getAllFilieres() {
-        List<Filiere> filieres =filierRepository.findAll();
-        List<RespenseFiliereDto> respenseFiliereDtos=new ArrayList<>();
-
-        for (Filiere i: filieres) {
-            RespenseFiliereDto respense=RespenseFiliereDto.builder().name(i.getName())
+        List<Filiere> filieres = filierRepository.findAll();
+        List<RespenseFiliereDto> respenseFiliereDtos = new ArrayList<>();
+        for (Filiere i : filieres) {
+            RespenseFiliereDto response = RespenseFiliereDto.builder().name(i.getName())
                     .modules(i.getModules())
                     .build();
-            respenseFiliereDtos.add(respense);
+            respenseFiliereDtos.add(response);
         }
-        System.out.println("Retuner la list des réponse ..............");
-      return respenseFiliereDtos;
+        return respenseFiliereDtos;
     }
 
     @Override
     public RespenseFiliereDto getFiliereById(Long id) {
         RespenseFiliereDto dto = RespenseFiliereDto.builder().build();
 
-        Filiere filiere= filierRepository.findById(id).get();
+        Optional<Filiere> opt = filierRepository.findById(id);
+        Filiere filiere ;
+        if (opt.isPresent()) {
+            filiere = opt.get();
+        } else {
+            throw new RuntimeException("Filiere not found for id :: " + id);
+        }
 
         BeanUtils.copyProperties(filiere, dto);
         return dto;
@@ -67,7 +68,6 @@ public class FiliereServiceImpl implements FiliereService {
     public void updateFiliere(Filiere filiere) {
 
     }
-
 
 
     @Override

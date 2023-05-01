@@ -1,6 +1,7 @@
 package com.student.StudentManagement.services;
 
 import com.student.StudentManagement.dto.RequestModuleFDto;
+import com.student.StudentManagement.dto.RespenseModuleFDto;
 import com.student.StudentManagement.model.ModuleF;
 import com.student.StudentManagement.model.ModulePojo;
 
@@ -11,9 +12,9 @@ public interface ModuleFService {
 
     public void saveModule(ModulePojo dataPojo);
 
-    List<ModuleF> getAllModuleFs();
+    List<RespenseModuleFDto> getAllModuleFs();
 
-    ModuleF getModuleFById(Long id );
+    RespenseModuleFDto getModuleFById(Long id );
 
     void updateModuleF(ModuleF moduleF);
 

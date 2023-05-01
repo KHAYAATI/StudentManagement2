@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,7 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(uniqueConstraints= @UniqueConstraint(columnNames={"name"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 
 public class Filiere {
     @Id

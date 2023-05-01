@@ -1,6 +1,7 @@
 package com.student.StudentManagement.services;
 
 import com.student.StudentManagement.dto.RequestModuleFDto;
+import com.student.StudentManagement.dto.RespenseModuleFDto;
 import com.student.StudentManagement.model.Filiere;
 import com.student.StudentManagement.model.ModuleF;
 import com.student.StudentManagement.model.ModulePojo;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,34 +39,39 @@ public class ModuleFServiceImpl implements ModuleFService {
     public void saveModule(ModulePojo dataPojo) {
         Filiere filiere = filierRepository.findById(dataPojo.getIdFiliere())
                 .orElseThrow(() -> new RuntimeException("Filiere Not Found"));
-
         ModuleF moduleF = new ModuleF();
-
         BeanUtils.copyProperties(dataPojo, moduleF);
-
         moduleF.setFiliere(filiere);
-
         filierRepository.save(filiere);
-
         moduleFRepository.save(moduleF);
     }
 
     @Override
-    public List<ModuleF> getAllModuleFs() {
-        return moduleFRepository.findAll();
+    public List<RespenseModuleFDto> getAllModuleFs() {
+        List<ModuleF> modules = moduleFRepository.findAll();
+        List<RespenseModuleFDto> dtos = new ArrayList<>();
+        for (ModuleF i : modules) {
+            RespenseModuleFDto response = RespenseModuleFDto.builder()
+                    .name(i.getName())
+                    .build();
+            dtos.add(response);
+        }
+        return dtos;
     }
 
     @Override
-    public ModuleF getModuleFById(Long id) {
+    public RespenseModuleFDto getModuleFById(Long id) {
+        RespenseModuleFDto dto = RespenseModuleFDto.builder().build();
+        // ModuleF moduleF = moduleFRepository.findById(id).get();
         Optional<ModuleF> opt = moduleFRepository.findById(id);
-        ModuleF moduleF ;
+        ModuleF moduleF;
         if (opt.isPresent()) {
             moduleF = opt.get();
         } else {
-            throw new RuntimeException("Module not found for id -> " + id);
+            throw new RuntimeException("Module not found for id :: " + id);
         }
-
-        return moduleF;
+        BeanUtils.copyProperties(moduleF, dto);
+        return dto;
     }
 
     @Override
