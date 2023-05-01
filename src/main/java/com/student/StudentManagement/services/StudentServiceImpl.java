@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -62,7 +63,6 @@ public class StudentServiceImpl implements StudentService {
                     .build();
             respenseStudentDtoList.add(respense);
         }
-        System.out.println("Retuner la list des réponse ..............");
         return respenseStudentDtoList;
     }
 
@@ -70,20 +70,15 @@ public class StudentServiceImpl implements StudentService {
     public RequestStudentDto getStudentByApogee(Long apogee) {
         RequestStudentDto dto = RequestStudentDto.builder().build();
         Student std = studentRepository.getStudentByApogee(apogee);
-        Student std1 = studentRepository.findById(std.getId()).get();
-
-        BeanUtils.copyProperties(std1, dto);
+        Optional<Student> opt = studentRepository.findById(std.getId());
+        Student student;
+        if (opt.isPresent()) {
+            student = opt.get();
+        } else {
+            throw new RuntimeException("Student not found for apogee :: " + apogee);
+        }
+        BeanUtils.copyProperties(student, dto);
         return dto;
-
-        // Optional<Student> opt = Optional.ofNullable(studentRepository.getStudentByApogee(apogee));
-//        Student student;
-//        if (opt.isPresent()) {
-//            student = opt.get();
-//        } else {
-//            throw new RuntimeException("Student not found for apogee :: " + apogee);
-//        }
-//
-//        return student;
     }
 
     @Override

@@ -2,15 +2,13 @@ package com.student.StudentManagement.controller;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseStudentDto;
-import com.student.StudentManagement.model.*;
+import com.student.StudentManagement.model.Carriere;
+import com.student.StudentManagement.model.StudentPojo;
 import com.student.StudentManagement.services.CarriereService;
 import com.student.StudentManagement.services.StudentService;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -18,12 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
-    private final CarriereService carriereService;
+
     @PostMapping
-    public void SaveStudent(@RequestBody StudentPojo data){
+    public void SaveStudent(@RequestBody StudentPojo data) {
         studentService.saveStudent(data);
 
     }
+
     @GetMapping("/viewStudents")
     public List<RespenseStudentDto> viewStudents() {
         return studentService.getAllStudents();
@@ -36,8 +35,6 @@ public class StudentController {
         return studentService.getStudentByApogee(apogee);
 
     }
-    //hello world ...
-    //mosine
 
 
     @GetMapping("/deleteStudent/{apogee}")
@@ -46,7 +43,7 @@ public class StudentController {
     }
 
     @GetMapping("/carrieres/{id}")
-    public List<Carriere> getCarrieresByStudent(@PathVariable(name="id") Long id){
+    public List<Carriere> getCarrieresByStudent(@PathVariable(name = "id") Long id) {
         return studentService.getCarrieresByStudentId(id);
     }
 }
