@@ -22,9 +22,8 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(unique = true)
-
     private String cin;
     @Column(unique = true)
     private Long apogee;

@@ -9,6 +9,8 @@ import com.student.StudentManagement.model.Student;
 import com.student.StudentManagement.model.StudentPojo;
 import com.student.StudentManagement.repository.FilierRepository;
 import com.student.StudentManagement.repository.StudentRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final FilierRepository filierRepository;
     private final CarriereService carriereService;
+
 
 
     @Override
@@ -67,18 +70,48 @@ public class StudentServiceImpl implements StudentService {
         return respenseStudentDtoList;
     }
 
+//    @Override
+//    public RequestStudentDto getStudentByApogee(Long apogee) {
+//        RequestStudentDto dto = RequestStudentDto.builder().build();
+//
+//        Student std = studentRepository.getStudentByApogee(apogee);
+//        Optional<Student> opt = studentRepository.findById(std.getId());
+//        Student student;
+//        if (opt.isPresent()) {
+//            student = opt.get();
+//        } else {
+//            throw new RuntimeException("Student not found for apogee :: " + apogee);
+//        }
+//        BeanUtils.copyProperties(student, dto);
+//        return dto;
+//    }
+
     @Override
     public RequestStudentDto getStudentByApogee(Long apogee) {
-        RequestStudentDto dto = RequestStudentDto.builder().build();
-        Student std = studentRepository.getStudentByApogee(apogee);
-        Optional<Student> opt = studentRepository.findById(std.getId());
-        Student student;
-        if (opt.isPresent()) {
-            student = opt.get();
+        RequestStudentDto dto;
+        if (apogee != null) {
+            Student std = studentRepository.getStudentByApogee(apogee);
+            dto = RequestStudentDto.builder()
+                .cin(std.getCin())
+                .apogee(std.getApogee())
+                .nom(std.getNom())
+                .prenom(std.getPrenom())
+                .cne(std.getCne())
+                .email(std.getEmail())
+                .phone(std.getPhone())
+                .dateNaissance(std.getDateNaissance())
+                .lieuNaissance(std.getLieuNaissance())
+                .adresse(std.getAdresse())
+                .genre(std.getGenre())
+                .filier(std.getFilier())
+                .carrieres(std.getCarrieres())
+                .build();
+
         } else {
-            throw new RuntimeException("Student not found for apogee :: " + apogee);
+            throw new NullPointerException("waqtaaaa rayeee7");
         }
-        BeanUtils.copyProperties(student, dto);
+
+
         return dto;
     }
 
