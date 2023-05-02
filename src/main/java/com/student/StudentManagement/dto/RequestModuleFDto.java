@@ -13,6 +13,8 @@ import java.util.List;
 public class RequestModuleFDto {
 
     private String name ;
+    //
+    private Filiere filiere;
 
 
 }

@@ -1,5 +1,6 @@
 package com.student.StudentManagement.services;
 
+import com.student.StudentManagement.dto.RequestFiliereDto;
 import com.student.StudentManagement.dto.RequestModuleFDto;
 import com.student.StudentManagement.dto.RespenseModuleFDto;
 import com.student.StudentManagement.model.Filiere;
@@ -75,7 +76,19 @@ public class ModuleFServiceImpl implements ModuleFService {
     }
 
     @Override
-    public void updateModuleF(ModuleF moduleF) {
+    public RequestModuleFDto updateModuleF(Long id, RequestModuleFDto requestModuleFDto) {
+
+        ModuleF moduleF = moduleFRepository.findById(id).orElseThrow(()->new RuntimeException("module not found !"));
+        RequestModuleFDto dto = RequestModuleFDto.builder().build();
+        BeanUtils.copyProperties(moduleF,dto);
+        if(requestModuleFDto.getName()!=null) dto.setName(requestModuleFDto.getName());
+        if(requestModuleFDto.getFiliere()!=null) dto.setFiliere(requestModuleFDto.getFiliere());
+
+        BeanUtils.copyProperties(dto,moduleF);
+        ModuleF newModule = moduleFRepository.save(moduleF);
+        BeanUtils.copyProperties(newModule,dto);
+        return dto;
+
 
     }
 

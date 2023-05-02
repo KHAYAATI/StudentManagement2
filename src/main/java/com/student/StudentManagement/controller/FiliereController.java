@@ -47,4 +47,10 @@ public class FiliereController {
         filiereService.deleteFiliere(id);
     }
 
+
+    @PutMapping("/update/{id}")
+    public RequestFiliereDto updateFiliere(@PathVariable Long id, @RequestBody RequestFiliereDto filiere) {
+        return filiereService.updateFiliere(id,filiere);
+
     }
+}

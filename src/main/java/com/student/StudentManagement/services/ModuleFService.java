@@ -16,7 +16,7 @@ public interface ModuleFService {
 
     RespenseModuleFDto getModuleFById(Long id );
 
-    void updateModuleF(ModuleF moduleF);
+    RequestModuleFDto updateModuleF(Long id,RequestModuleFDto moduleF);
 
     void deleteModuleF(Long id);
 }

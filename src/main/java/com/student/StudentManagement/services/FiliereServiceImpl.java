@@ -4,6 +4,7 @@ import com.student.StudentManagement.dto.RequestFiliereDto;
 import com.student.StudentManagement.dto.RespenseFiliereDto;
 import com.student.StudentManagement.model.Filiere;
 import com.student.StudentManagement.repository.FilierRepository;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @Service
 public class FiliereServiceImpl implements FiliereService {
     private final FilierRepository filierRepository;
+    private RequestFiliereDto updatedf;
 
     @Override
     public RequestFiliereDto createFiliere(RequestFiliereDto requestFiliereDto) {
@@ -65,8 +67,15 @@ public class FiliereServiceImpl implements FiliereService {
     }
 
     @Override
-    public void updateFiliere(Filiere filiere) {
-
+    public RequestFiliereDto updateFiliere(Long id,RequestFiliereDto requestFiliereDto) {
+        Filiere filiere = filierRepository.findById(id).orElseThrow(()->new RuntimeException("filiere not found"));
+         RequestFiliereDto dto = RequestFiliereDto.builder().build();
+         BeanUtils.copyProperties(filiere,dto);
+            if(requestFiliereDto.getName()!=null) dto.setName(requestFiliereDto.getName());
+            BeanUtils.copyProperties(dto,filiere);
+            Filiere newFiliere = filierRepository.save(filiere);
+            BeanUtils.copyProperties(newFiliere,dto);
+            return dto;
     }
 
 

@@ -15,7 +15,7 @@ public interface FiliereService {
     RespenseFiliereDto getFiliereById(Long id);
 
 
-    void updateFiliere(Filiere filier);
+    RequestFiliereDto updateFiliere(Long id, RequestFiliereDto filiere);
 
     void deleteFiliere(Long id);
 }

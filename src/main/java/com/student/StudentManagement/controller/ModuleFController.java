@@ -1,5 +1,6 @@
 package com.student.StudentManagement.controller;
 
+import com.student.StudentManagement.dto.RequestModuleFDto;
 import com.student.StudentManagement.dto.RespenseModuleFDto;
 import com.student.StudentManagement.model.Filiere;
 import com.student.StudentManagement.model.ModuleF;
@@ -41,4 +42,8 @@ public class ModuleFController {
     }
 
 
+    @PutMapping("/update/{id}")
+    public RequestModuleFDto updateModuleF(@PathVariable Long id , @RequestBody RequestModuleFDto requestModuleFDto){
+        return moduleFService.updateModuleF(id,requestModuleFDto);
+    }
 }
