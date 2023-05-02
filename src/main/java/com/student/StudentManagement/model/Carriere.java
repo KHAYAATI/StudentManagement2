@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity(name = "carriere")
-@Table(uniqueConstraints= @UniqueConstraint(columnNames={"diplomat"}))
+@Table(uniqueConstraints=@UniqueConstraint( columnNames={"diplomat", "student_id"}))
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,7 +20,7 @@ public class Carriere {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    @Column(unique = true)
+    @Column(name = "diplomat")
     private Diplomat diplomat;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", nullable = true)
