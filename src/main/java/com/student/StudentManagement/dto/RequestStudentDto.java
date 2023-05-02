@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 public class RequestStudentDto {
     private String cin ;
-    private long apogee;
+    private Long apogee;
     private String nom ;
     private String prenom ;
     private String cne ;

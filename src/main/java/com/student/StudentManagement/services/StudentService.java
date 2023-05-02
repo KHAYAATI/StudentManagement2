@@ -14,7 +14,7 @@ public interface StudentService {
     public void saveStudent(StudentPojo dataPojo);
     List<RespenseStudentDto> getAllStudents();
     RequestStudentDto getStudentByApogee(Long apogee);
-    void updateStudent(Student student);
+    RequestStudentDto updateStudent(Long id,RequestStudentDto requestStudentDto);
     void deleteStudent(Long apogee);
     List<Carriere> getCarrieresByStudentId(Long StudentId);
     Diplomat getCurrentDiplomat(Long apogee);

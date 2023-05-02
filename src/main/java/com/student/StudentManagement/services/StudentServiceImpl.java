@@ -1,12 +1,11 @@
 package com.student.StudentManagement.services;
 
+import com.student.StudentManagement.dto.RequestModuleFDto;
 import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseStudentDto;
 import com.student.StudentManagement.enumurations.Diplomat;
-import com.student.StudentManagement.model.Carriere;
-import com.student.StudentManagement.model.Filiere;
-import com.student.StudentManagement.model.Student;
-import com.student.StudentManagement.model.StudentPojo;
+import com.student.StudentManagement.model.*;
+import com.student.StudentManagement.repository.CarriereRepository;
 import com.student.StudentManagement.repository.FilierRepository;
 import com.student.StudentManagement.repository.StudentRepository;
 import lombok.AllArgsConstructor;
@@ -28,8 +27,7 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final FilierRepository filierRepository;
     private final CarriereService carriereService;
-
-
+    private final CarriereRepository carriereRepository;
 
     @Override
     public void saveStudent(StudentPojo dataPojo) {
@@ -85,7 +83,6 @@ public class StudentServiceImpl implements StudentService {
 //        BeanUtils.copyProperties(student, dto);
 //        return dto;
 //    }
-
     @Override
     public RequestStudentDto getStudentByApogee(Long apogee) {
         RequestStudentDto dto;
@@ -116,7 +113,27 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void updateStudent(Student student) {
+    public RequestStudentDto updateStudent(Long id ,RequestStudentDto requestStudentDto) {
+        Student student = studentRepository.findById(id).orElseThrow(()->new RuntimeException("student not found !"));
+        RequestStudentDto dto = RequestStudentDto.builder().build();
+        BeanUtils.copyProperties(student,dto);
+        if(requestStudentDto.getCin()!=null) dto.setCin(requestStudentDto.getCin());
+        if(requestStudentDto.getApogee()!=null) dto.setApogee(requestStudentDto.getApogee());
+        if(requestStudentDto.getNom()!=null) dto.setNom(requestStudentDto.getNom());
+        if(requestStudentDto.getPrenom()!=null) dto.setPrenom(requestStudentDto.getPrenom());
+        if(requestStudentDto.getCne()!=null) dto.setCne(requestStudentDto.getCne());
+        if(requestStudentDto.getEmail()!=null) dto.setEmail(requestStudentDto.getEmail());
+        if(requestStudentDto.getPhone()!=null) dto.setPhone(requestStudentDto.getPhone());
+        if(requestStudentDto.getDateNaissance()!=null) dto.setDateNaissance(requestStudentDto.getDateNaissance());
+        if(requestStudentDto.getLieuNaissance()!=null) dto.setLieuNaissance(requestStudentDto.getLieuNaissance());
+        if(requestStudentDto.getAdresse()!=null) dto.setAdresse(requestStudentDto.getAdresse());
+        if(requestStudentDto.getGenre()!=null) dto.setGenre(requestStudentDto.getGenre());
+        if(requestStudentDto.getFilier()!=null) dto.setFilier(requestStudentDto.getFilier());
+
+        BeanUtils.copyProperties(dto,student);
+        Student newStudent = studentRepository.save(student);
+        BeanUtils.copyProperties(newStudent,dto);
+        return dto;
 
     }
 

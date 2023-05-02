@@ -52,4 +52,8 @@ public class StudentController {
     public Diplomat getCurrentDiplomat(@PathVariable(value = "apogee") Long apogee){
         return studentService.getCurrentDiplomat(apogee);
     }
+    @PutMapping("/update/{id}")
+    public RequestStudentDto updateStudent(@PathVariable Long id , @RequestBody RequestStudentDto requestStudentDto){
+        return studentService.updateStudent(id,requestStudentDto);
+    }
 }
