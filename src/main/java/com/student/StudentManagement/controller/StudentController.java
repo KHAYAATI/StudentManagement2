@@ -2,6 +2,7 @@ package com.student.StudentManagement.controller;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseStudentDto;
+import com.student.StudentManagement.enumurations.Diplomat;
 import com.student.StudentManagement.model.Carriere;
 import com.student.StudentManagement.model.StudentPojo;
 import com.student.StudentManagement.services.CarriereService;
@@ -45,5 +46,10 @@ public class StudentController {
     @GetMapping("/carrieres/{id}")
     public List<Carriere> getCarrieresByStudent(@PathVariable(name = "id") Long id) {
         return studentService.getCarrieresByStudentId(id);
+    }
+
+    @GetMapping("/diplomat/{apogee}")
+    public Diplomat getCurrentDiplomat(@PathVariable(value = "apogee") Long apogee){
+        return studentService.getCurrentDiplomat(apogee);
     }
 }

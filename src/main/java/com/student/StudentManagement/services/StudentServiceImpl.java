@@ -2,6 +2,7 @@ package com.student.StudentManagement.services;
 
 import com.student.StudentManagement.dto.RequestStudentDto;
 import com.student.StudentManagement.dto.RespenseStudentDto;
+import com.student.StudentManagement.enumurations.Diplomat;
 import com.student.StudentManagement.model.Carriere;
 import com.student.StudentManagement.model.Filiere;
 import com.student.StudentManagement.model.Student;
@@ -98,5 +99,14 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findById(StudentId)
                 .orElseThrow(() -> new EntityNotFoundException("Student not found"));
         return student.getCarrieres();
+    }
+
+    @Override
+    public Diplomat getCurrentDiplomat(Long apogee) {
+        Student student= new Student();
+        Carriere carriere= new Carriere(student.getApogee());
+        Diplomat currentDiplomat =carriere.getDiplomat().getMaxEnumValue();
+        System.out.println("carriere of student"+student.getId()+"is"+currentDiplomat);
+        return currentDiplomat;
     }
 }

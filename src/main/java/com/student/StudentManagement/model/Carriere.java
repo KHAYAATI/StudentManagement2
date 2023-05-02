@@ -27,5 +27,9 @@ public class Carriere {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Student student;
 
+    public Carriere(Long id){
+        this.id=id;
+    }
+
 
 }
